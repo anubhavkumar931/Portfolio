@@ -58,16 +58,24 @@ export type PhoneContact = {
 export type GreetingVideo = {
   src: string;
   poster: string;
-  title: string;
-  subtitle: string;
   delayAfterEndMs: number;
+};
+
+export type RoleTaglineLink = {
+  label: string;
+  href: string;
 };
 
 export const siteConfig = {
   name: "Anubhav Kumar",
   brandMonogram: "AK",
   displayName: "Anubhav Kumar",
-  roleTagline: "MSc Financial Technology Candidate | Finance + FinTech Analytics",
+  roleTagline: "MSc Financial Technology | CFA LvL 1 | FMVA - CFI",
+  roleTaglineLinks: [
+    { label: "MSc Financial Technology", href: "#education" },
+    { label: "CFA LvL 1", href: "#certifications" },
+    { label: "FMVA - CFI", href: "#certifications" },
+  ] as RoleTaglineLink[],
   summary:
     "Detail-oriented and results-focused postgraduate pursuing MSc Financial Technology at the University of Exeter, with strengths in financial modelling, quantitative analysis, and business research.",
   locationFocus:
@@ -89,11 +97,9 @@ export const siteConfig = {
     } as PhoneContact,
   },
   greetingVideo: {
-    src: "/videos/greeting-anubhav.mp4",
+    src: "/videos/my-intro-resource.mp4",
     poster: "/images/greeting-poster.jpg",
-    title: "Quick Greeting",
-    subtitle: "A short introduction before you explore the portfolio.",
-    delayAfterEndMs: 10000,
+    delayAfterEndMs: 3000,
   } as GreetingVideo,
   heroVisuals: {
     primarySkyline: "/images/finance/ny-skyscraper.jpg",
@@ -104,8 +110,6 @@ export const siteConfig = {
     { label: "Email", href: "mailto:anubhavkumar9310@gmail.com" },
   ] as SocialLink[],
   navItems: [
-    { label: "Now", href: "#now" },
-    { label: "About", href: "#about" },
     { label: "Skills", href: "#skills" },
     { label: "Projects", href: "#projects" },
     { label: "Experience", href: "#experience" },

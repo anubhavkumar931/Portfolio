@@ -3,13 +3,12 @@
 import { useState } from "react";
 
 import { siteConfig } from "@/content/profile";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export function Navbar() {
   const [isBrandHovered, setIsBrandHovered] = useState(false);
 
   return (
-    <header className="floating-nav glass-nav sticky top-3 z-50 mx-3 rounded-2xl border border-[var(--color-border)] backdrop-blur-xl sm:mx-6">
+    <header className="floating-nav glass-nav sticky top-0 z-50 rounded-2xl border border-[var(--color-border)] backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-5 py-3 sm:px-8">
         <a
           href="#top"
@@ -17,11 +16,15 @@ export function Navbar() {
           onMouseLeave={() => setIsBrandHovered(false)}
           onFocus={() => setIsBrandHovered(true)}
           onBlur={() => setIsBrandHovered(false)}
-          className={`ak-brand inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1.5 text-[var(--color-text)] ${isBrandHovered ? "is-expanded" : ""}`}
+          className={`ak-brand inline-flex items-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1.5 text-[var(--color-text)] ${isBrandHovered ? "is-expanded" : ""}`}
           aria-label={siteConfig.displayName}
         >
-          <span className="ak-mono font-display text-sm font-semibold tracking-[0.08em]">{siteConfig.brandMonogram}</span>
-          <span className="ak-name text-xs font-semibold uppercase tracking-[0.12em]">{siteConfig.displayName}</span>
+          <span className="ak-wordmark relative block h-5">
+            <span className="ak-wordmark-short font-display text-sm font-semibold tracking-[0.08em]">
+              {siteConfig.brandMonogram}
+            </span>
+            <span className="ak-wordmark-full text-xs font-semibold uppercase tracking-[0.12em]">{siteConfig.displayName}</span>
+          </span>
         </a>
 
         <nav className="hidden items-center gap-5 md:flex" aria-label="Primary">
@@ -50,7 +53,6 @@ export function Navbar() {
           >
             Contact
           </a>
-          <ThemeToggle />
         </div>
       </div>
 

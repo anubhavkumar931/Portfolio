@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -36,7 +36,12 @@ export function Reveal({
   distance = 24,
   duration = 0.6,
 }: RevealProps) {
+  const shouldReduceMotion = useReducedMotion();
   const hiddenOffset = axisFromDirection(direction, distance);
+
+  if (shouldReduceMotion) {
+    return <div className={cn(className)}>{children}</div>;
+  }
 
   return (
     <motion.div

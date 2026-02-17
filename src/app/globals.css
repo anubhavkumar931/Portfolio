@@ -3,49 +3,18 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --bg-0: #050505;
-  --bg-1: #0d0b09;
-  --bg-2: #15110b;
-  --gold-1: #d7a94c;
-  --gold-2: #f3d289;
-  --gold-glow: #f8e0a9;
-  --star-color: #ffe8b5;
-  --shine-opacity: 0.12;
-  --color-bg: var(--bg-0);
-  --color-surface: #14110d;
-  --color-card: #1a1610;
-  --color-text: #f8f0dc;
-  --color-muted: #cfbd98;
-  --color-border: #463823;
-  --color-accent: var(--gold-1);
-  --color-accent-soft: var(--gold-2);
-  --color-glow: var(--gold-glow);
-  --shadow-card: 0 14px 38px rgba(0, 0, 0, 0.4);
-  --shadow-card-hover: 0 32px 78px rgba(0, 0, 0, 0.6);
-  --shadow-elevated: 0 20px 58px rgba(0, 0, 0, 0.52);
-}
-
-.dark {
-  --bg-0: #030303;
-  --bg-1: #090705;
-  --bg-2: #120e08;
-  --gold-1: #e0b458;
-  --gold-2: #f9d894;
-  --gold-glow: #ffe8ba;
-  --star-color: #ffeec8;
-  --shine-opacity: 0.16;
-  --color-bg: var(--bg-0);
-  --color-surface: #110d08;
-  --color-card: #18120b;
-  --color-text: #fff5dc;
-  --color-muted: #d5bf91;
-  --color-border: #4c3b22;
-  --color-accent: var(--gold-1);
-  --color-accent-soft: var(--gold-2);
-  --color-glow: var(--gold-glow);
-  --shadow-card: 0 16px 42px rgba(0, 0, 0, 0.54);
-  --shadow-card-hover: 0 40px 88px rgba(0, 0, 0, 0.7);
-  --shadow-elevated: 0 26px 72px rgba(0, 0, 0, 0.62);
+  --color-bg: #faf4e8;
+  --color-surface: #fffdf8;
+  --color-card: #fcf6eb;
+  --color-text: #2f2415;
+  --color-muted: #6f5f47;
+  --color-border: #d6c2a2;
+  --color-accent: #b38337;
+  --color-accent-soft: #d7b16b;
+  --color-glow: #f2ddaf;
+  --shadow-card: 0 10px 30px rgba(93, 65, 18, 0.1);
+  --shadow-card-hover: 0 20px 42px rgba(93, 65, 18, 0.16);
+  --shadow-elevated: 0 14px 34px rgba(93, 65, 18, 0.18);
 }
 
 * {
@@ -54,15 +23,24 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 body {
   min-height: 100vh;
   font-family: var(--font-body), "Segoe UI", sans-serif;
   background:
-    radial-gradient(circle at 8% 14%, color-mix(in oklab, var(--gold-1) 7%, transparent), transparent 38%),
-    radial-gradient(circle at 92% 8%, color-mix(in oklab, var(--gold-2) 5%, transparent), transparent 40%),
-    linear-gradient(180deg, var(--bg-2) 0%, var(--bg-1) 45%, var(--bg-0) 100%);
+    radial-gradient(circle at 8% 12%, rgba(235, 206, 151, 0.2), transparent 34%),
+    radial-gradient(circle at 92% 8%, rgba(212, 176, 111, 0.16), transparent 38%),
+    linear-gradient(180deg, #fffdf7 0%, #fbf5e9 48%, #f8efdf 100%);
   color: var(--color-text);
   position: relative;
 }
@@ -73,22 +51,9 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: -1;
-  opacity: 0.09;
-  background:
-    radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--star-color) 22%, transparent) 1px, transparent 0);
-  background-size: 26px 26px;
-}
-
-body::after {
-  content: "";
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(120deg, transparent 0%, color-mix(in oklab, var(--gold-1) 6%, transparent) 48%, transparent 70%),
-    linear-gradient(68deg, transparent 0%, color-mix(in oklab, var(--gold-2) 5%, transparent) 42%, transparent 74%);
-  opacity: var(--shine-opacity);
+  opacity: 0.05;
+  background-image: radial-gradient(rgba(115, 84, 33, 0.65) 0.45px, transparent 0.45px);
+  background-size: 20px 20px;
 }
 
 .font-display {
@@ -97,7 +62,7 @@ body::after {
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--color-accent) 36%, transparent);
+  background: rgba(179, 131, 55, 0.25);
 }
 
 a,
@@ -106,8 +71,36 @@ button {
 }
 
 .glass-nav {
-  background: color-mix(in oklab, var(--color-surface) 86%, transparent);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.36);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.52) 0%, rgba(255, 249, 236, 0.34) 100%);
+  border-color: rgba(214, 194, 162, 0.6);
+  backdrop-filter: blur(18px) saturate(165%);
+  -webkit-backdrop-filter: blur(18px) saturate(165%);
+  box-shadow:
+    0 12px 30px rgba(95, 67, 20, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.38);
+}
+
+.glass-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.45), transparent 40%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.02));
+}
+
+.glass-nav::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  top: 0;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
 }
 
 .floating-nav {
@@ -120,42 +113,64 @@ button {
 
 .floating-nav:hover,
 .floating-nav:focus-within {
-  transform: perspective(960px) rotateX(1.35deg) translateY(-2px);
-  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.48);
+  transform: perspective(960px) rotateX(1.1deg) translateY(-2px);
+  box-shadow: 0 16px 34px rgba(95, 67, 20, 0.16);
 }
 
 .ak-brand {
-  min-width: 56px;
-  max-width: 56px;
+  width: 56px;
   overflow: hidden;
   transition:
-    max-width 280ms ease,
-    transform 240ms ease,
-    box-shadow 240ms ease;
+    width 320ms ease,
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
 }
 
 .ak-brand:hover,
 .ak-brand:focus-visible {
   transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 9px 22px rgba(95, 67, 20, 0.16);
+  border-color: color-mix(in oklab, var(--color-accent) 52%, var(--color-border));
 }
 
 .ak-brand.is-expanded {
-  max-width: 220px;
+  width: 188px;
 }
 
-.ak-name {
-  opacity: 0;
-  transform: translateX(-8px);
+.ak-wordmark {
+  width: 152px;
+}
+
+.ak-wordmark-short,
+.ak-wordmark-full {
+  position: absolute;
+  left: 0;
+  top: 50%;
   white-space: nowrap;
+  transform: translateY(-50%);
   transition:
-    opacity 200ms ease,
+    opacity 220ms ease,
     transform 240ms ease;
 }
 
-.ak-brand.is-expanded .ak-name {
+.ak-wordmark-short {
   opacity: 1;
-  transform: translateX(0);
+}
+
+.ak-wordmark-full {
+  opacity: 0;
+  transform: translateY(-50%) translateX(-8px);
+}
+
+.ak-brand.is-expanded .ak-wordmark-short {
+  opacity: 0;
+  transform: translateY(-50%) scale(0.92);
+}
+
+.ak-brand.is-expanded .ak-wordmark-full {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
 }
 
 .nav-collapsible {
@@ -218,6 +233,40 @@ button {
   transform: scaleX(1);
 }
 
+.tagline-link {
+  position: relative;
+  display: inline-block;
+  color: color-mix(in oklab, var(--color-text) 88%, var(--color-accent) 12%);
+  transition:
+    color 220ms ease,
+    transform 220ms ease;
+}
+
+.tagline-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.05em;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-soft));
+  transition: transform 220ms ease;
+  opacity: 0.95;
+}
+
+.tagline-link:hover,
+.tagline-link:focus-visible {
+  color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.tagline-link:hover::after,
+.tagline-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
 .ib-card {
   position: relative;
   overflow: hidden;
@@ -225,10 +274,10 @@ button {
   background: color-mix(in oklab, var(--color-surface) 88%, var(--color-card) 12%);
   box-shadow: var(--shadow-card);
   transition:
-    transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    border-color 240ms ease,
-    box-shadow 280ms ease,
-    background 280ms ease;
+    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 220ms ease,
+    box-shadow 260ms ease,
+    background 260ms ease;
   transform: translateY(0);
 }
 
@@ -238,9 +287,9 @@ button {
   inset: -2px;
   opacity: 0;
   background:
-    radial-gradient(circle at 14% 0%, color-mix(in oklab, var(--color-glow) 18%, transparent), transparent 34%),
-    radial-gradient(circle at 88% 100%, color-mix(in oklab, var(--color-accent) 16%, transparent), transparent 36%);
-  transition: opacity 320ms ease;
+    radial-gradient(circle at 14% 0%, rgba(242, 221, 175, 0.22), transparent 34%),
+    radial-gradient(circle at 88% 100%, rgba(179, 131, 55, 0.16), transparent 36%);
+  transition: opacity 300ms ease;
   pointer-events: none;
 }
 
@@ -256,15 +305,15 @@ button {
   transform-origin: center;
   background: linear-gradient(90deg, transparent, var(--color-accent-soft), transparent);
   transition:
-    transform 280ms ease,
-    opacity 260ms ease;
+    transform 260ms ease,
+    opacity 240ms ease;
   pointer-events: none;
 }
 
 .ib-card:hover,
 .ib-card:focus-within {
-  transform: translateY(-6px);
-  border-color: color-mix(in oklab, var(--color-accent) 60%, var(--color-border));
+  transform: translateY(-4px);
+  border-color: color-mix(in oklab, var(--color-accent) 50%, var(--color-border));
   box-shadow: var(--shadow-card-hover);
 }
 
@@ -281,27 +330,27 @@ button {
 
 .ib-chip {
   transition:
-    transform 220ms ease,
-    border-color 220ms ease,
-    color 220ms ease,
-    box-shadow 240ms ease;
+    transform 210ms ease,
+    border-color 210ms ease,
+    color 210ms ease,
+    box-shadow 220ms ease;
 }
 
 .ib-chip:hover,
 .ib-chip:focus-visible {
-  transform: translateY(-2px);
-  border-color: color-mix(in oklab, var(--color-accent) 55%, var(--color-border));
+  transform: translateY(-1px);
+  border-color: color-mix(in oklab, var(--color-accent) 52%, var(--color-border));
   color: var(--color-text);
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34);
+  box-shadow: 0 8px 20px rgba(93, 65, 18, 0.13);
 }
 
 .ib-btn {
   position: relative;
   overflow: hidden;
   transition:
-    transform 240ms ease,
-    box-shadow 240ms ease,
-    border-color 240ms ease,
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease,
     color 220ms ease,
     background 220ms ease;
 }
@@ -313,14 +362,10 @@ button {
   bottom: -2px;
   width: 36%;
   left: -52%;
-  background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.62) 45%, transparent 100%);
+  background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.85) 45%, transparent 100%);
   transform: skewX(-20deg);
   transition: left 420ms ease;
   pointer-events: none;
-}
-
-.dark .ib-btn::before {
-  background: linear-gradient(110deg, transparent 0%, rgba(248, 224, 169, 0.34) 45%, transparent 100%);
 }
 
 .ib-btn:hover,
@@ -342,70 +387,8 @@ button {
 }
 
 .ib-input:focus {
-  border-color: color-mix(in oklab, var(--color-accent) 75%, var(--color-border));
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-accent) 24%, transparent);
-}
-
-@keyframes starTwinkle {
-  0% {
-    opacity: 0.14;
-    transform: translateY(0);
-  }
-  50% {
-    opacity: 0.8;
-    transform: translateY(-2px);
-  }
-  100% {
-    opacity: 0.14;
-    transform: translateY(0);
-  }
-}
-
-@keyframes goldSweep {
-  0% {
-    transform: translate3d(-24%, 0, 0);
-    opacity: 0;
-  }
-  35% {
-    opacity: var(--shine-opacity);
-  }
-  65% {
-    opacity: calc(var(--shine-opacity) * 0.8);
-  }
-  100% {
-    transform: translate3d(24%, 0, 0);
-    opacity: 0;
-  }
-}
-
-@keyframes edgePulse {
-  0% {
-    opacity: 0.25;
-  }
-  50% {
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 0.25;
-  }
-}
-
-.gold-star {
-  animation-name: starTwinkle;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-
-.gold-sweep {
-  animation-name: goldSweep;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-.edge-pulse {
-  animation-name: edgePulse;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
+  border-color: color-mix(in oklab, var(--color-accent) 72%, var(--color-border));
+  box-shadow: 0 0 0 3px rgba(179, 131, 55, 0.19);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -419,7 +402,10 @@ button {
   .nav-link,
   .floating-nav,
   .ak-brand,
-  .ak-name,
+  .ak-wordmark-short,
+  .ak-wordmark-full,
+  .tagline-link,
+  .tagline-link::after,
   .nav-collapsible .nav-label,
   .nav-collapsible .nav-dot {
     transition-duration: 1ms !important;
@@ -433,11 +419,4 @@ button {
   .ib-chip:focus-visible {
     transform: none;
   }
-
-  .gold-star,
-  .gold-sweep,
-  .edge-pulse {
-    animation: none !important;
-  }
 }
-
