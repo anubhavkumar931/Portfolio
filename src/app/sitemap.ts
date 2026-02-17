@@ -1,0 +1,15 @@
+import type { MetadataRoute } from "next";
+
+import { siteConfig } from "@/content/profile";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    {
+      url: siteConfig.websiteUrl,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 1,
+    },
+  ];
+}
+
